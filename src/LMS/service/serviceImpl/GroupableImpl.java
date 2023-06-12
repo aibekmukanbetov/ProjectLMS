@@ -38,20 +38,34 @@ public class GroupableImpl implements Groupable {
 
     @Override
     public Group getGroupByName(String nameGroup) {
-        Group group1 = null;
-        for (Group group: groups) {
-            if(group.getNameGroup().equalsIgnoreCase(nameGroup)){
-                group1 = group;
+        try {
+            for (Group group : groups) {
+                if (group.getNameGroup().equalsIgnoreCase(nameGroup)) {
+                    return group;
+                }
             }
-        }
-        return group1;
+            throw new RuntimeException("Группа с таким названием не найдена");
+        } catch (RuntimeException e) {
+            System.err.println(e.getMessage());
+        return null;
+    }
     }
 
     @Override
     public Group updateGroup(String oldGroupName, String newName) {
         Group group = getGroupByName(oldGroupName);
-        group.setNameGroup(newName);
-        return group;
+        try {
+           for(Group group1: groups){
+                if (group1.getNameGroup().equals(newName)){
+                   throw new RuntimeException("Группа с таким названием уже существует");
+               }
+           }
+            group.setNameGroup(newName);
+            return group;
+        } catch (RuntimeException r){
+            System.err.println(r.getMessage());
+            return null;
+        }
     }
 
     @Override

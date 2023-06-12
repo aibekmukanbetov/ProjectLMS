@@ -21,34 +21,54 @@ public class LessonapleImpl implements Lessonable {
     @Override
     public String addNewLesson(String groupName, Lesson lesson) {
         Group group = groupable.getGroupByName(groupName);
-        group.getLessons().add(lesson);
+        try {
+            for (Lesson lesson1: group.getLessons()) {
+                if (lesson1.getLesson().equals(lesson.getLesson())){
+                    throw new RuntimeException("Студент с таким логином уже существует");
+                }
+            }
+            group.getLessons().add(lesson);
+        } catch (RuntimeException r){
+            return (r.getMessage());
+        }
         return "Урок успешно добавлен";
     }
 
     @Override
     public Lesson getLessonByName(String lessonName) {
-        Lesson lesson = null;
-        for (Group group: groupable.getGroup()) {
-            for (Lesson lessons : group.getLessons()) {
-                if (lessons.getLesson().equalsIgnoreCase(lessonName)) {
-                    lesson = lessons;
+        try{
+            for (Group group: groupable.getGroup()) {
+                for (Lesson lessons : group.getLessons()) {
+                    if (lessons.getLesson().equalsIgnoreCase(lessonName)) {
+                        return lessons;
+                    }
                 }
             }
+            throw  new RuntimeException("Урок с таким название не найден");
+        } catch (RuntimeException r){
+            System.err.println(r.getMessage());
+            return null;
         }
-        return lesson;
     }
 
     @Override
     public List<Lesson> getAllOfTheStudentsLessons(String emailStudent) {
         List<Lesson> lessons = new ArrayList<>();
-        for (Group group: groupable.getGroup()) {
-            for (Student student: group.getStudents()){
-                if (student.getEmail().equalsIgnoreCase(emailStudent)){
-                    lessons.addAll(group.getLessons());
+        try {
+            for (Group group: groupable.getGroup()) {
+                for (Student student: group.getStudents()){
+                    if (student.getEmail().equalsIgnoreCase(emailStudent)){
+                        lessons.addAll(group.getLessons());
+                        return lessons;
+                    }
                 }
             }
+             throw new RuntimeException("Студент с таким логином не найден");
+        } catch (RuntimeException r){
+            System.err.println(r.getMessage());
+            return null;
         }
-        return lessons;
+
     }
 
     @Override
