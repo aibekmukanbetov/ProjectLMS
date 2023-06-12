@@ -10,7 +10,6 @@ public class Group {
     private  String description;
     private List<Lesson> lessons = new ArrayList<>();
     private  List<Student> students = new ArrayList<>();
-
     public Group(String nameGroup, String description) {
         this.id = counter++;
         this.nameGroup = nameGroup;
@@ -54,6 +53,7 @@ public class Group {
     }
 
     public void setLessons(List<Lesson> lessons) {
+
         this.lessons = lessons;
     }
 

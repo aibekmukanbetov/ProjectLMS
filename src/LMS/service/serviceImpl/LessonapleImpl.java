@@ -10,12 +10,12 @@ import java.util.List;
 
 public class LessonapleImpl implements Lessonable {
     private GroupableImpl groupable;
-    private StudenableImpl studenable;
+    private StudenableImpl studentable;
 
 
     public LessonapleImpl(GroupableImpl groupable, StudenableImpl studenable) {
         this.groupable = groupable;
-        this.studenable = studenable;
+        this.studentable = studenable;
     }
 
     @Override

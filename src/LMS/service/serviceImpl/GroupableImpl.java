@@ -23,7 +23,16 @@ public class GroupableImpl implements Groupable {
 
     @Override
     public String addNewGroup(Group group) {
-        groups.add(group);
+        try {
+            for (Group group1: groups){
+                if (group1.getNameGroup().equals(group.getNameGroup())){
+                    throw new RuntimeException("Группа с тиким названием уже существует");
+                }
+            }
+            groups.add(group);
+        } catch (RuntimeException r){
+            return r.getMessage();
+        }
         return "Группа успешно добавлен";
     }
 
@@ -31,7 +40,7 @@ public class GroupableImpl implements Groupable {
     public Group getGroupByName(String nameGroup) {
         Group group1 = null;
         for (Group group: groups) {
-            if(group.getNameGroup().equalsIgnoreCase(nameGroup) || group.getNameGroup().contains(nameGroup)){
+            if(group.getNameGroup().equalsIgnoreCase(nameGroup)){
                 group1 = group;
             }
         }

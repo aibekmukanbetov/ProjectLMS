@@ -1,5 +1,6 @@
 package LMS;
 
+import LMS.enumuration.Gender;
 import LMS.model.Admin;
 import LMS.model.Group;
 import LMS.model.Lesson;
@@ -39,16 +40,16 @@ public class Main {
                             do {
                                 System.out.println(
                                         "|_______________________________________________________________________|\n" +
-                                                "| 1.Add new group                 | 9.Get all student by group name     |\n" +
-                                                "| 2.Get group by name             | 10.Update student                   |\n" +
-                                                "| 3.Update group name             | 11.Delete student                   |\n" +
-                                                "| 4.Get all group                 | 12.Add new lesson to group          |\n" +
-                                                "| 5.Delete group by name          | 13.Get Lesson by name               |\n" +
-                                                "| 6.Add new student to group      | 14.Get all of the student's lessons |\n" +
-                                                "| 7.Get student by first name     | 15.Get all of the group's lessons   |\n" +
-                                                "| 8.Get student by email          | 16.Delete lesson                    |\n" +
-                                                "|                           17 Exit                                     |\n" +
-                                                "|_______________________________________________________________________|\n");
+                                        "| 1.Add new group                 | 9.Get all student by group name     |\n" +
+                                        "| 2.Get group by name             | 10.Update student                   |\n" +
+                                        "| 3.Update group name             | 11.Delete student                   |\n" +
+                                        "| 4.Get all group                 | 12.Add new lesson to group          |\n" +
+                                        "| 5.Delete group by name          | 13.Get Lesson by name               |\n" +
+                                        "| 6.Add new student to group      | 14.Get all of the student's lessons |\n" +
+                                        "| 7.Get student by first name     | 15.Get all of the group's lessons   |\n" +
+                                        "| 8.Get student by email          | 16.Delete lesson                    |\n" +
+                                        "|                           17 Exit                                     |\n" +
+                                        "|_______________________________________________________________________|\n");
            /* System.out.println("================================================");
             System.out.println("1 Add new group");
             System.out.println("2 Get group by name");
@@ -111,14 +112,15 @@ public class Main {
                                         System.out.println("Введите фамилию студента: ");
                                         Scanner scanner6 = new Scanner(System.in);
                                         String lastName = scanner6.nextLine();
-                                        System.out.println("Введите почту студента: ");
+                                        System.out.println("Введите электронную почту студента: ");
                                         String emailStudent = scanner6.nextLine();
                                         System.out.println("Введите пароль студента: ");
                                         Scanner scanner7 = new Scanner(System.in);
                                         String password = scanner7.nextLine();
                                         System.out.println("Введите пол студента: ");
-                                        String gender = scanner7.nextLine();
-                                        System.out.println(studenable.addNewStudentToGroup(nameG, new Student(firstName, lastName, emailStudent, password, gender)));
+                                        String genderInput = scanner7.next();
+                                        Gender gender = Gender.valueOf(genderInput.toUpperCase());
+                                        System.out.println(studenable.addNewStudentToGroup(nameG, new Student(firstName, lastName, emailStudent, password, gender )));
                                         break;
                                     case 7:
                                         Scanner scanner8 = new Scanner(System.in);
@@ -128,7 +130,7 @@ public class Main {
                                         break;
                                     case 8:
                                         Scanner scanner9 = new Scanner(System.in);
-                                        System.out.println("Введите почту студента: ");
+                                        System.out.println("Введите электронную почту студента: ");
                                         String studentEmail = scanner9.nextLine();
                                         System.out.println(studenable.searchByEmailStudent(studentEmail));
                                         break;
@@ -147,20 +149,21 @@ public class Main {
                                         System.out.println("Введите новую фамилию студента: ");
                                         Scanner scanner12 = new Scanner(System.in);
                                         String newLastName = scanner12.nextLine();
-                                        System.out.println("Введите новую почту: ");
+                                        System.out.println("Введите новую электронную почту студента: ");
                                         String newEmailSudent = scanner12.nextLine();
                                         System.out.println("Введите новый пароль: ");
                                         Scanner scanner13 = new Scanner(System.in);
                                         String newPassword = scanner13.nextLine();
                                         System.out.println("Введите пол студента: ");
-                                        String newGender = scanner13.nextLine();
+                                        String neGender = scanner13.nextLine();
+                                        Gender newGender = Gender.valueOf(neGender.toUpperCase());
                                         System.out.println(studenable.updateStudent(email, new Student(newFirstName, newLastName, newEmailSudent, newPassword, newGender)));
                                         break;
                                     case 11:
                                         System.out.println("Введите название группы: ");
                                         Scanner scanner14 = new Scanner(System.in);
                                         String nameGr = scanner14.nextLine();
-                                        System.out.println("Введите почту студента которого хотите удалить: ");
+                                        System.out.println("Введите электронную почту студента которого хотите удалить: ");
                                         String studentEmailDelete = scanner14.nextLine();
                                         System.out.println(studenable.deleteStudent(nameGr, studentEmailDelete));
                                         break;
@@ -182,7 +185,7 @@ public class Main {
                                         System.out.println(lessonaple.getLessonByName(lessonName));
                                         break;
                                     case 14:
-                                        System.out.println("Введите почту студента: ");
+                                        System.out.println("Введите электронную почту студента: ");
                                         Scanner scanner18 = new Scanner(System.in);
                                         String emailStud = scanner18.nextLine();
                                         System.out.println(lessonaple.getAllOfTheStudentsLessons(emailStud));
@@ -232,11 +235,11 @@ public class Main {
 
     public static void  hour(){
         String formattedTime = LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss"));
-        if (LocalTime.now().getHour()>8 && LocalTime.now().getHour()<12) {
+        if (LocalTime.now().getHour()>=8 && LocalTime.now().getHour()<12) {
             System.out.println("Доброе утро! Время: " + formattedTime);
-        } else if (LocalTime.now().getHour()>12 && LocalTime.now().getHour()<18) {
+        } else if (LocalTime.now().getHour()>=12 && LocalTime.now().getHour()<18) {
             System.out.println("Добрый день! Время: " + formattedTime);
-        } else if (LocalTime.now().getHour()>18 && LocalTime.now().getHour()<22) {
+        } else if (LocalTime.now().getHour()>=18 && LocalTime.now().getHour()<22) {
             System.out.println("Добрый вечер! Время: " + formattedTime);
         } else {
             System.out.println("Доброй ночи! Время: " + formattedTime);

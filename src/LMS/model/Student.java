@@ -11,18 +11,25 @@ public class Student {
     private  String lastName;
     private  String email;
     private String password;
-    private String gender;
+    private Gender gender;
 
-    public Student(String firstName, String lastName, String email, String password, String gender) {
-        this.id = counter++;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.gender = gender;
+    public Student(String firstName, String lastName, String email, String password, Gender gender) {
+            this.id = counter++;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.password = password;
+            this.gender = gender;
+
     }
 
+    public static long getCounter() {
+        return counter;
+    }
 
+    public static void setCounter(long counter) {
+        Student.counter = counter;
+    }
 
     public Long getId() {
         return id;
@@ -64,11 +71,11 @@ public class Student {
         this.password = password;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
