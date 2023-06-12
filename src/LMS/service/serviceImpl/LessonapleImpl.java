@@ -11,7 +11,7 @@ import java.util.List;
 public class LessonapleImpl implements Lessonable {
     private GroupableImpl groupable;
     private StudenableImpl studenable;
-    private List<Group> groups;
+
 
     public LessonapleImpl(GroupableImpl groupable, StudenableImpl studenable) {
         this.groupable = groupable;
@@ -28,9 +28,9 @@ public class LessonapleImpl implements Lessonable {
     @Override
     public Lesson getLessonByName(String lessonName) {
         Lesson lesson = null;
-        for (Group group: groups) {
+        for (Group group: groupable.getGroup()) {
             for (Lesson lessons : group.getLessons()) {
-                if (lesson.getLesson().equalsIgnoreCase(lessonName)) {
+                if (lessons.getLesson().equalsIgnoreCase(lessonName)) {
                     lesson = lessons;
                 }
             }
@@ -41,7 +41,7 @@ public class LessonapleImpl implements Lessonable {
     @Override
     public List<Lesson> getAllOfTheStudentsLessons(String emailStudent) {
         List<Lesson> lessons = new ArrayList<>();
-        for (Group group: groups) {
+        for (Group group: groupable.getGroup()) {
             for (Student student: group.getStudents()){
                 if (student.getEmail().equalsIgnoreCase(emailStudent)){
                     lessons.addAll(group.getLessons());

@@ -24,17 +24,17 @@ public class Admin {
         try {
             if (getEmail().equals(email)){
                 if (newPassword.length()<7){
-                    setPassword(newPassword);
-                } else {
                     throw new RuntimeException("Пароль должен быть не меньше 7 символов");
+                } else {
+                    setPassword(newPassword);
+                    return "Пароль успешно изменен";
                 }
-
             } else {
                  throw new RuntimeException("Такой логин не существует");
             }
         } catch (RuntimeException r){
             System.out.println(r.getMessage());
         }
-        return "Пароль успешно изменен";
+        return null;
     }
 }

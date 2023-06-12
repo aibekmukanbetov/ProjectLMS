@@ -8,7 +8,6 @@ import java.util.List;
 
 public class StudenableImpl  implements Srudentable {
     private  GroupableImpl groupable;
-    private List<Group> groups;
 
     public StudenableImpl(GroupableImpl groupable) {
         this.groupable = groupable;
@@ -37,7 +36,7 @@ public class StudenableImpl  implements Srudentable {
     @Override
     public Student searchByEmailStudent(String emailStudent) {
         Student student = null;
-        for (Group group: groups) {
+        for (Group group: groupable.getGroup()) {
             for (Student student1 : group.getStudents()) {
                 if (student1.getEmail().equalsIgnoreCase(emailStudent)) {
                     student = student1;

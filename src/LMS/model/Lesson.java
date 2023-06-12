@@ -38,7 +38,7 @@ public class Lesson {
 
     @Override
     public String toString() {
-        return "id: " + id +
+        return "\nid: " + id +
                 ", lesson: " + lesson +
                 ", description: " + description;
     }
