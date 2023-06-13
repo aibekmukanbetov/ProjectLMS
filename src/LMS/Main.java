@@ -10,6 +10,7 @@ import LMS.service.serviceImpl.LessonapleImpl;
 import LMS.service.serviceImpl.StudenableImpl;
 
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.Scanner;
 
 public class Main {
@@ -50,25 +51,6 @@ public class Main {
                                         "| 8.Get student by email          | 16.Delete lesson                    |\n" +
                                         "|                           17 Exit                                     |\n" +
                                         "|_______________________________________________________________________|\n");
-           /* System.out.println("================================================");
-            System.out.println("1 Add new group");
-            System.out.println("2 Get group by name");
-            System.out.println("3 Update group name");
-            System.out.println("4 Get all group");
-            System.out.println("5 Delete group by name");
-            System.out.println("6 Add new student to group");
-            System.out.println("7 Get student by first name");
-            System.out.println("8 Get student by email");
-            System.out.println("9 Get all student by group name");
-            System.out.println("10 Update student");
-            System.out.println("11 Delete student");
-            System.out.println("12 Add new lesson to group");
-            System.out.println("13 Get Lesson by name");
-            System.out.println("14 Get all of the student's lessons");
-            System.out.println("15 Get all of the group's lessons");
-            System.out.println("16 Delete lesson");
-            System.out.println("17 Exit");
-            System.out.println("================================================");*/
                                 Scanner scanner21 = new Scanner(System.in);
                                 num = scanner21.nextInt();
                                 switch (num){
@@ -234,12 +216,12 @@ public class Main {
 
 
     public static void  hour(){
-        String formattedTime = LocalTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss"));
-        if (LocalTime.now().getHour()>=8 && LocalTime.now().getHour()<12) {
+        String formattedTime = ZonedDateTime.now().format(java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss"));
+        if (ZonedDateTime.now().getHour()>=8 && ZonedDateTime.now().getHour()<12) {
             System.out.println("Доброе утро! Время: " + formattedTime);
-        } else if (LocalTime.now().getHour()>=12 && LocalTime.now().getHour()<18) {
+        } else if (ZonedDateTime.now().getHour()>=12 && ZonedDateTime.now().getHour()<18) {
             System.out.println("Добрый день! Время: " + formattedTime);
-        } else if (LocalTime.now().getHour()>=18 && LocalTime.now().getHour()<22) {
+        } else if (ZonedDateTime.now().getHour()>=18 && ZonedDateTime.now().getHour()<22) {
             System.out.println("Добрый вечер! Время: " + formattedTime);
         } else {
             System.out.println("Доброй ночи! Время: " + formattedTime);

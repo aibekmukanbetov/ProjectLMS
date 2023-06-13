@@ -17,6 +17,11 @@ public class StudenableImpl  implements Srudentable {
     public String addNewStudentToGroup(String groupName, Student student) {
         Group group = groupable.getGroupByName(groupName);
         try {
+            for (Group group1: groupable.getGroup()){
+                if (group1.getStudents().size()==0){
+                    Student.setCounter(1L);
+                }
+            }
             for (Student student1: group.getStudents()) {
                 if (student1.getEmail().equals(student.getEmail())){
                     throw new RuntimeException("Студент с таким логином уже существует");

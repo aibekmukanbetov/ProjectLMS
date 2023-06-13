@@ -1,6 +1,8 @@
 package LMS.service.serviceImpl;
 
 import LMS.model.Group;
+import LMS.model.Lesson;
+import LMS.model.Student;
 import LMS.service.Groupable;
 
 import java.io.IOException;
@@ -18,9 +20,6 @@ public class GroupableImpl implements Groupable {
     public void setGroup(List<Group> groups) {
         this.groups = groups;
     }
-
-
-
     @Override
     public String addNewGroup(Group group) {
         try {
